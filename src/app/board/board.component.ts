@@ -26,6 +26,9 @@ import { GameService } from '../game.service';
           *ngFor="let cell of board.slice(6, 9)" [cell]="cell"> </app-cell> 
       </div>
     </section>
+    <button class="restart" (click)="restart()">
+      New Game!
+    </button> 
   `,
   styleUrls: ['./board.component.css']
 })
@@ -34,6 +37,12 @@ export class BoardComponent {
   gameService: GameService = inject(GameService);
   
   constructor() {
+    this.board = this.gameService.getBoard();
+  }
+
+  restart() {
+    console.log("restart clicked")
+    this.gameService.restart();
     this.board = this.gameService.getBoard();
   }
 }

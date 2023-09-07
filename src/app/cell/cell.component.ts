@@ -8,7 +8,7 @@ import { GameService } from '../game.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <button class="cell" (click) = "handleClick()">
+    <button class="cell" (click)="handleClick()">
       {{cell.player}}
     </button>
   `,

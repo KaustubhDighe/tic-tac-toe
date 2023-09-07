@@ -24,7 +24,9 @@ export class GameService {
         col: i % 3
       }
     }
+    console.log(this.board);
     this.winner = '';
+    this.player = 0;
   }
 
   getBoard(): Cell[] {

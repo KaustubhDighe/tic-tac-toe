@@ -1,5 +1,20 @@
 .board-row:after {
-    clear: both;
-    content: '';
-    display: table;
-  }
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.restart{
+  background: #c09619;
+  border: 1px solid #262020;
+  float: center;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 20px;
+  height: 45px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 128px;
+}
