@@ -1,0 +1,14 @@
+.cell{
+    background: #a9a3e9;
+    border: 1px solid #262020;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 128px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 128px;
+}
