@@ -28,7 +28,8 @@ import { GameService } from '../game.service';
     </section>
     <button class="restart" (click)="restart()">
       New Game!
-    </button> 
+    </button>
+    <div class="winner">{{gameService.winMessage}}</div> 
   `,
   styleUrls: ['./board.component.css']
 })

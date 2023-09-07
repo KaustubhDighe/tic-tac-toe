@@ -9,6 +9,8 @@ export class GameService {
   players = ['X', 'O'];
   player = 0;
   winner: string = '';
+  winMessage: string = '';
+  numPlayed = 0;
 
   constructor() {
     this.restart();
@@ -27,6 +29,8 @@ export class GameService {
     console.log(this.board);
     this.winner = '';
     this.player = 0;
+    this.numPlayed = 0;
+    this.winMessage = '';
   }
 
   getBoard(): Cell[] {
@@ -59,6 +63,7 @@ export class GameService {
   onPlay(row: number, col: number) {
     const cell = this.board[row * 3 + col];
     if(!cell.played && this.winner == '') {
+      this.numPlayed++;
       cell.played = true;
       cell.player = this.players[this.player];
       this.player = (this.player + 1) % 2;
@@ -66,6 +71,9 @@ export class GameService {
       const winner = this.findWinner();
       if(winner) {
         this.winner = winner;
+        this.winMessage = `Player ${this.winner} WINS`;
+      } else if(this.numPlayed == 9) {
+        this.winMessage = "It's a DRAW";
       }
     }
   }
