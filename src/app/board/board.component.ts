@@ -14,28 +14,32 @@ import { Cell } from '../cell';
     <section class="board">
       <div class="board-row"> 
         <app-cell
-          *ngFor="let cell of board[0]" [cell]="cell"> </app-cell> 
+          *ngFor="let cell of board.slice(0, 3)" [cell]="cell"> </app-cell> 
       </div>
       <div class="board-row"> 
       <app-cell
-          *ngFor="let cell of board[1]" [cell]="cell"> </app-cell> 
+          *ngFor="let cell of board.slice(3, 6)" [cell]="cell"> </app-cell> 
       </div>
       <div class="board-row"> 
       <app-cell
-          *ngFor="let cell of board[2]" [cell]="cell"> </app-cell> 
+          *ngFor="let cell of board.slice(6, 9)" [cell]="cell"> </app-cell> 
       </div>
     </section>
   `,
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
-  board: Cell[][] = [[]];
+  board: Cell[];
+  player: number = 0;
+  
   constructor() {
-    this.board = new Array<Cell[]>(3);
-    for(let i = 0; i < 3; i++) {
-      this.board[i] = new Array<Cell>(3);
-      for(let j = 0; j < 3; j++) {
-        this.board[i][j] = {text: "", x: i, y: j};
+    this.board = new Array<Cell>(9);
+    for(let i = 0; i < 9; i++) {
+      this.board[i] = {
+        player: "",
+        played: false,
+        row: i / 3,
+        col: i % 3
       }
     }
   }

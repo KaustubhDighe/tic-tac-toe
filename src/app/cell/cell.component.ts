@@ -8,7 +8,7 @@ import { Cell } from '../cell';
   imports: [CommonModule],
   template: `
     <button class="cell" (click) = "handleClick()">
-      {{cell.text}}
+      {{cell.player}}
     </button>
   `,
   styleUrls: ['./cell.component.css']

@@ -1,5 +1,6 @@
 export interface Cell {
-    text: string;
-    x: number;
-    y: number;
+    player: string;
+    played: boolean;
+    row: number;
+    col: number;
 }
