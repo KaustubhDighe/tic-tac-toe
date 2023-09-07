@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Cell } from '../cell';
 
 @Component({
   selector: 'app-cell',
@@ -7,20 +8,14 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <button class="cell" (click) = "handleClick()">
-      
+      {{cell.text}}
     </button>
   `,
   styleUrls: ['./cell.component.css']
 })
 export class CellComponent {
-  player: number;
+  @Input() cell!: Cell;
 
-  constructor() {
-    this.player = 0;
-  }
-
-  handleClick() {
-    this.player = (this.player + 1) % 2;
-    
+  handleClick() { 
   }
 }
