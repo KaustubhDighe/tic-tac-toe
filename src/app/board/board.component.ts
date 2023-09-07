@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CellComponent } from '../cell/cell.component';
 import { Cell } from '../cell';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-board',
@@ -30,17 +31,9 @@ import { Cell } from '../cell';
 })
 export class BoardComponent {
   board: Cell[];
-  player: number = 0;
+  gameService: GameService = inject(GameService);
   
   constructor() {
-    this.board = new Array<Cell>(9);
-    for(let i = 0; i < 9; i++) {
-      this.board[i] = {
-        player: "",
-        played: false,
-        row: i / 3,
-        col: i % 3
-      }
-    }
+    this.board = this.gameService.getBoard();
   }
 }

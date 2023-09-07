@@ -5,10 +5,33 @@ import { Cell } from './cell';
   providedIn: 'root'
 })
 export class GameService {
+  board: Cell[] = [];
+  players = ['X', 'O'];
+  player = 0;
+  winner: string = '';
 
-  constructor() { }
+  constructor() {
+    this.restart();
+  }
 
-  findWinner(board: Cell[]) : string | undefined {
+  restart() {
+    this.board = new Array<Cell>(9);
+    for(let i = 0; i < 9; i++) {
+      this.board[i] = {
+        player: "",
+        played: false,
+        row: i / 3 >> 0,
+        col: i % 3
+      }
+    }
+    this.winner = '';
+  }
+
+  getBoard(): Cell[] {
+    return this.board;
+  }
+
+  findWinner() : string | undefined {
     const winningPositions: number[][] = [
       [0, 1, 2],
       [3, 4, 5],
@@ -20,14 +43,28 @@ export class GameService {
       [2, 4, 6]
     ];
     for(const position of winningPositions) {
-      const cell = board[position[0]];
+      const cell = this.board[position[0]];
       if(!cell.played) continue;
       const player = cell.player;
-      if(board[position[1]].player == player
-        && board[position[2]].player == player) {
+      if(this.board[position[1]].player == player
+        && this.board[position[2]].player == player) {
           return player;
         }
     }
     return undefined;
+  }
+
+  onPlay(row: number, col: number) {
+    const cell = this.board[row * 3 + col];
+    if(!cell.played && this.winner == '') {
+      cell.played = true;
+      cell.player = this.players[this.player];
+      this.player = (this.player + 1) % 2;
+      
+      const winner = this.findWinner();
+      if(winner) {
+        this.winner = winner;
+      }
+    }
   }
 }

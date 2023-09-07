@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Cell } from '../cell';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-cell',
@@ -15,7 +16,10 @@ import { Cell } from '../cell';
 })
 export class CellComponent {
   @Input() cell!: Cell;
+  gameService: GameService = inject(GameService);
 
-  handleClick() { 
+  handleClick() {
+     console.log(this.cell);
+     this.gameService.onPlay(this.cell.row, this.cell.col);
   }
 }
